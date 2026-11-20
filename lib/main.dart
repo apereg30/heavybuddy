@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'routes.dart';
 import 'state/app_state.dart';
@@ -33,6 +34,9 @@ class _HeavyBuddyAppState extends State<HeavyBuddyApp> {
         builder: (context, _) => MaterialApp(
           title: 'Heavy Buddy',
           debugShowCheckedModeBanner: false,
+          locale: const Locale('es'),
+          supportedLocales: const [Locale('es')],
+          localizationsDelegates: GlobalMaterialLocalizations.delegates,
           theme: buildAppTheme(altoContraste: _state.altoContraste),
           builder: (context, child) {
             // Multiplica la escala del sistema, sin pisarla.

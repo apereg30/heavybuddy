@@ -54,6 +54,46 @@ class AppState extends ChangeNotifier {
     return true;
   }
 
+  /// Cierra la sesión actual guardando el registro de dolor.
+  void finalizarSesion(RegistroDolor dolor) {
+    final s = _sesionActual;
+    if (s == null) return;
+    s.dolor = dolor;
+    _sesiones.add(s);
+    _sesionActual = null;
+    notifyListeners();
+  }
+
+  void guardarObjetivo(Objetivo o) {
+    _objetivo = o;
+    notifyListeners();
+  }
+
+  /// Mejor marca registrada para la prueba (sesiones cerradas y la actual).
+  /// Ignora valores <= 0; en tiempos gana el menor.
+  double? mejorMarca(Baremo b) {
+    double? mejor;
+    for (final s in [..._sesiones, if (_sesionActual != null) _sesionActual!]) {
+      for (final serie in s.series) {
+        if (serie.ejercicio != b.prueba) continue;
+        final v = b.metrica == Metrica.tiempo ? serie.tiempo.inMilliseconds / 1000 : serie.repeticiones.toDouble();
+        if (v <= 0) continue;
+        if (mejor == null || (b.mayorEsMejor ? v > mejor : v < mejor)) mejor = v;
+      }
+    }
+    return mejor;
+  }
+
+  /// Progreso hacia la marca objetivo, de 0 a 1.
+  double get progresoObjetivo {
+    final o = _objetivo;
+    if (o == null) return 0;
+    final mejor = mejorMarca(o.baremo);
+    if (mejor == null || o.marca <= 0) return 0;
+    final p = o.baremo.mayorEsMejor ? mejor / o.marca : o.marca / mejor;
+    return p.clamp(0.0, 1.0);
+  }
+
   /// Días hasta el examen (negativo si ya pasó).
   int? get diasRestantes {
     final o = _objetivo;

@@ -55,6 +55,9 @@ class Baremo {
   final Metrica metrica;
   final double minimo;
   final bool mayorEsMejor;
+
+  /// ¿Esta marca alcanza el mínimo? (en tiempos, menor es mejor)
+  bool cumple(double marca) => mayorEsMejor ? marca >= minimo : marca <= minimo;
 }
 
 class Objetivo {

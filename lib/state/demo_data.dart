@@ -20,6 +20,9 @@ const catalogoEjercicios = [
   'Press de banca',
 ];
 
+/// Zonas que se pueden marcar como afectadas en la autoevaluación de dolor.
+const catalogoZonas = ['Ninguna', 'Rodilla', 'Hombro', 'Espalda', 'Tobillo', 'Muñeca', 'Otra'];
+
 enum PerfilDemo {
   opositor('Opositor demo'),
   rehabilitacion('Rehabilitación demo'),
