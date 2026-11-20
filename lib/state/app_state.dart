@@ -13,6 +13,20 @@ class AppState extends ChangeNotifier {
   Map<String, Limite> _limites = {};
   int? semanaRehab;
   int? totalSemanasRehab;
+  bool _textoGrande = false;
+  bool _altoContraste = false;
+
+  bool get textoGrande => _textoGrande;
+  set textoGrande(bool v) {
+    _textoGrande = v;
+    notifyListeners();
+  }
+
+  bool get altoContraste => _altoContraste;
+  set altoContraste(bool v) {
+    _altoContraste = v;
+    notifyListeners();
+  }
 
   List<Sesion> get sesiones => List.unmodifiable(_sesiones);
   Sesion? get sesionActual => _sesionActual;
@@ -22,6 +36,22 @@ class AppState extends ChangeNotifier {
   void iniciarSesion() {
     _sesionActual ??= Sesion();
     notifyListeners();
+  }
+
+  /// Añade una serie a la sesión actual (la crea si no existe).
+  void registrarSerie(Serie serie) {
+    _sesionActual ??= Sesion();
+    _sesionActual!.series.add(serie);
+    notifyListeners();
+  }
+
+  /// Quita la última serie de la sesión actual. Devuelve false si no había.
+  bool deshacerUltimaSerie() {
+    final s = _sesionActual;
+    if (s == null || s.series.isEmpty) return false;
+    s.series.removeLast();
+    notifyListeners();
+    return true;
   }
 
   /// Días hasta el examen (negativo si ya pasó).

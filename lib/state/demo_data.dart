@@ -11,6 +11,15 @@ const catalogoBaremos = [
   Baremo(oposicion: 'Bomberos', prueba: 'Sentadilla', metrica: Metrica.repeticiones, minimo: 15, mayorEsMejor: true),
 ];
 
+/// Ejercicios que se pueden elegir al registrar una serie.
+const catalogoEjercicios = [
+  'Carrera 1000 m',
+  'Flexiones',
+  'Dominadas',
+  'Sentadilla',
+  'Press de banca',
+];
+
 enum PerfilDemo {
   opositor('Opositor demo'),
   rehabilitacion('Rehabilitación demo'),

@@ -28,12 +28,24 @@ class _HeavyBuddyAppState extends State<HeavyBuddyApp> {
   Widget build(BuildContext context) {
     return AppScope(
       state: _state,
-      child: MaterialApp(
-        title: 'Heavy Buddy',
-        debugShowCheckedModeBanner: false,
-        theme: buildAppTheme(),
-        initialRoute: Routes.inicio,
-        routes: Routes.table,
+      child: ListenableBuilder(
+        listenable: _state,
+        builder: (context, _) => MaterialApp(
+          title: 'Heavy Buddy',
+          debugShowCheckedModeBanner: false,
+          theme: buildAppTheme(altoContraste: _state.altoContraste),
+          builder: (context, child) {
+            // Multiplica la escala del sistema, sin pisarla.
+            final mq = MediaQuery.of(context);
+            final factor = _state.textoGrande ? 1.3 : 1.0;
+            return MediaQuery(
+              data: mq.copyWith(textScaler: TextScaler.linear(mq.textScaler.scale(1) * factor)),
+              child: child!,
+            );
+          },
+          initialRoute: Routes.inicio,
+          routes: Routes.table,
+        ),
       ),
     );
   }

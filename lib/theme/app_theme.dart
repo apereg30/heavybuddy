@@ -28,19 +28,21 @@ class AppSpacing {
 /// Tamaño mínimo de objetivo táctil (48x48 dp).
 const _minTarget = Size(48, 48);
 
-ThemeData buildAppTheme() {
+ThemeData buildAppTheme({bool altoContraste = false}) {
+  final primario = altoContraste ? const Color(0xFF2A1F8F) : AppColors.primary;
+  final secundario = altoContraste ? Colors.black : AppColors.textSecondary;
   final scheme = ColorScheme.fromSeed(
     seedColor: AppColors.primary,
     brightness: Brightness.light,
   ).copyWith(
-    primary: AppColors.primary,
+    primary: primario,
     onPrimary: Colors.white,
     surface: AppColors.background,
     onSurface: AppColors.text,
     error: AppColors.error,
   );
 
-  const border = BorderSide(color: AppColors.primary, width: 1.5);
+  final border = BorderSide(color: primario, width: 1.5);
 
   return ThemeData(
     useMaterial3: true,
@@ -48,15 +50,15 @@ ThemeData buildAppTheme() {
     scaffoldBackgroundColor: AppColors.background,
     fontFamily: 'Roboto',
     materialTapTargetSize: MaterialTapTargetSize.padded,
-    textTheme: const TextTheme(
-      headlineMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: AppColors.primary),
+    textTheme: TextTheme(
+      headlineMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: primario),
       titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.text),
       titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.text),
       bodyMedium: TextStyle(fontSize: 14, color: AppColors.text),
-      bodySmall: TextStyle(fontSize: 12, color: AppColors.textSecondary),
+      bodySmall: TextStyle(fontSize: 12, color: secundario),
     ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.primary,
+    appBarTheme: AppBarTheme(
+      backgroundColor: primario,
       foregroundColor: Colors.white,
       elevation: 0,
       scrolledUnderElevation: 0,
@@ -65,7 +67,7 @@ ThemeData buildAppTheme() {
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
-        backgroundColor: AppColors.primary,
+        backgroundColor: primario,
         foregroundColor: Colors.white,
         minimumSize: const Size(48, 56),
         textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -74,7 +76,7 @@ ThemeData buildAppTheme() {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: AppColors.primary,
+        foregroundColor: primario,
         backgroundColor: AppColors.tint,
         minimumSize: _minTarget,
         side: border,
@@ -84,7 +86,7 @@ ThemeData buildAppTheme() {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: AppColors.primary,
+        foregroundColor: primario,
         minimumSize: _minTarget,
       ),
     ),
