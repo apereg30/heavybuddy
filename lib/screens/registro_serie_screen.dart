@@ -77,7 +77,7 @@ class _RegistroSerieScreenState extends State<RegistroSerieScreen> {
       return;
     }
     final limite = state.limites[_ejercicio];
-    if (limite != null && _peso >= limite.pesoKg) {
+    if (limite != null && _peso > limite.pesoKg) {
       final seguir = await showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -124,7 +124,7 @@ class _RegistroSerieScreenState extends State<RegistroSerieScreen> {
     final state = AppScope.of(context);
     final t = Theme.of(context).textTheme;
     final limite = _ejercicio == null ? null : state.limites[_ejercicio];
-    final supera = limite != null && _peso >= limite.pesoKg;
+    final supera = limite != null && _peso > limite.pesoKg;
     final series = state.sesionActual?.series ?? const <Serie>[];
 
     return HbScaffold(
