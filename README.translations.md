@@ -1,6 +1,6 @@
 # heavybuddy · Translations
 
-Translations of [README.md](../README.md). / Traducciones del README.
+Translations of [README.md](README.md). / Traducciones del README.
 
 - [Español](#español) · [Deutsch](#deutsch) · [Čeština](#čeština) · [Русский](#русский) · [Afrikaans](#afrikaans) · [日本語](#日本語) · [中文](#中文)
 

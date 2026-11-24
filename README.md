@@ -1,4 +1,4 @@
-**English** · [Translations / Traducciones / Übersetzungen…](docs/README.translations.md) (Español, Deutsch, Čeština, Русский, Afrikaans, 日本語, 中文)
+**English** · [Translations / Traducciones / Übersetzungen…](README.translations.md) (Español, Deutsch, Čeština, Русский, Afrikaans, 日本語, 中文)
 
 # heavybuddy
 
