@@ -100,7 +100,7 @@ class _ObjetivosScreenState extends State<ObjetivosScreen> {
                   child: Text(_fecha == null ? 'Seleccionar fecha' : fechaCorta(_fecha!)),
                 ),
               ),
-              if (_errorFecha) ...[
+              if (_errorFecha)
                 Padding(
                   padding: const EdgeInsets.only(top: AppSpacing.s),
                   child: Semantics(
@@ -118,15 +118,6 @@ class _ObjetivosScreenState extends State<ObjetivosScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: AppSpacing.m),
-                InfoCard(
-                  title: 'Progreso calculado',
-                  child: o == null
-                      ? const Text('Guarda un objetivo para ver tu progreso.')
-                      : Text('${dias! < 0 ? 'La fecha del examen ya ha pasado' : '$dias días restantes'}'
-                          ' · ${(state.progresoObjetivo * 100).round()} % hacia la marca'),
-                ),
-              ],
               const SizedBox(height: AppSpacing.m),
               DropdownButtonFormField<Baremo>(
                 initialValue: _baremo,
@@ -161,6 +152,13 @@ class _ObjetivosScreenState extends State<ObjetivosScreen> {
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: AppSpacing.m),
+              InfoCard(
+                title: 'Progreso calculado',
+                child: o == null
+                    ? const Text('Guarda un objetivo para ver tu progreso.')
+                    : Text('${dias! < 0 ? 'La fecha del examen ya ha pasado' : '$dias días restantes'}'
+                        ' · ${(state.progresoObjetivo * 100).round()} % hacia la marca'),
+              ),
             ],
           ),
         ),

@@ -73,10 +73,10 @@ class _DolorScreenState extends State<DolorScreen> {
                 child: Semantics(
                   selected: _nivel == i,
                   child: OutlinedButton(
-                    onPressed: () {
+                    onPressed: () => setState(() {
                       _nivel = i;
                       _error = null;
-                    },
+                    }),
                     style: OutlinedButton.styleFrom(
                       padding: EdgeInsets.zero,
                       foregroundColor: _nivel == i ? Colors.white : AppColors.text,
