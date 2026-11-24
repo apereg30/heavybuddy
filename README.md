@@ -1,3 +1,5 @@
+**English** · [Español](README.es.md) · [Deutsch](README.de.md) · [Čeština](README.cs.md) · [Русский](README.ru.md) · [Afrikaans](README.af.md) · [日本語](README.ja.md) · [中文](README.zh.md)
+
 # heavybuddy
 
 Heavybuddy is an app that helps you track physical objectives.
